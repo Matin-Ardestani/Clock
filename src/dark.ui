@@ -30,7 +30,7 @@
     <normaloff>../images/logo.png</normaloff>../images/logo.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #F9F9F9;</string>
+   <string notr="true">background-color: #0B0D12;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="pages">
@@ -138,7 +138,7 @@ border-radius: 20px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>:</string>
@@ -160,7 +160,7 @@ border-radius: 20px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>Alarm in 6 hours and 30 minutes</string>
@@ -235,7 +235,7 @@ background-color: #b5b5b5;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00</string>
@@ -260,7 +260,7 @@ background-color: #b5b5b5;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00</string>
@@ -269,7 +269,7 @@ background-color: #b5b5b5;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QPushButton" name="alarm_deletebtn1">
+      <widget class="QPushButton" name="pushButton">
        <property name="geometry">
         <rect>
          <x>525</x>
@@ -286,7 +286,7 @@ background-color: #b5b5b5;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../images/delete-bin.png</normaloff>../images/delete-bin.png</iconset>
+         <normaloff>../images/delete-bin-light.png</normaloff>../images/delete-bin-light.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -330,7 +330,7 @@ background-color: #b5b5b5;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>:</string>
@@ -352,7 +352,7 @@ background-color: #b5b5b5;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>Alarm in 6 hours and 30 minutes</string>
@@ -427,7 +427,7 @@ background-color: #DEDEDE;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00</string>
@@ -452,7 +452,7 @@ background-color: #DEDEDE;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00</string>
@@ -478,7 +478,7 @@ background-color: #DEDEDE;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../images/delete-bin.png</normaloff>../images/delete-bin.png</iconset>
+         <normaloff>../images/delete-bin-light.png</normaloff>../images/delete-bin-light.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -521,7 +521,7 @@ background-color: #DEDEDE;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #F9F9F9;
+        <string notr="true">background-color: #0B0D12;
 border-radius: 130px;</string>
        </property>
        <property name="frameShape">
@@ -549,7 +549,7 @@ border-radius: 130px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>13</string>
@@ -568,7 +568,7 @@ border-radius: 130px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>Total 50 seconds</string>
@@ -712,7 +712,7 @@ border-radius: 20px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>00</string>
@@ -731,7 +731,7 @@ border-radius: 20px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>:</string>
@@ -750,7 +750,7 @@ border-radius: 20px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>02</string>
@@ -769,7 +769,7 @@ border-radius: 20px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>:</string>
@@ -788,7 +788,7 @@ border-radius: 20px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #0B0D12;</string>
+            <string notr="true">color: #F9F9F9;</string>
            </property>
            <property name="text">
             <string>12</string>
@@ -909,7 +909,7 @@ border-radius: 20px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00:00:24</string>
@@ -934,7 +934,7 @@ border-radius: 20px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00:01:02</string>
@@ -959,7 +959,7 @@ border-radius: 20px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00:02:05</string>
@@ -984,7 +984,7 @@ border-radius: 20px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #0B0D12;</string>
+        <string notr="true">color: #F9F9F9;</string>
        </property>
        <property name="text">
         <string>00:02:06</string>
@@ -1040,7 +1040,7 @@ border-radius: 10px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>Tehran</string>
@@ -1065,7 +1065,7 @@ border-radius: 10px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>22:33</string>
@@ -1094,7 +1094,7 @@ border-radius: 10px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>Select app theme</string>
@@ -1236,7 +1236,7 @@ border-radius: 15px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>Dark</string>
@@ -1261,7 +1261,7 @@ border-radius: 15px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>Light</string>
@@ -1286,7 +1286,7 @@ border-radius: 15px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>System default</string>
@@ -1313,7 +1313,7 @@ border-radius: 15px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
        <string>About</string>
@@ -1335,10 +1335,10 @@ border-radius: 15px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #0B0D12;</string>
+       <string notr="true">color: #F9F9F9;</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is a multifunctional app that helps you do your daily activities better.&lt;/p&gt;&lt;p&gt;This app programmed by a 15-year-old teenager who is interested in programming.&lt;/p&gt;&lt;p&gt;So you can support him with this links:&lt;/p&gt;&lt;p&gt;GitHub: &lt;a href=&quot;https://github.com/Matin-Ardestani&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;github.com/Matin-Ardestani&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Social medeia: &lt;a href=&quot;https://bioly.io/MatinArdestani&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bioly.io/MatinArdestani&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is a multifunctional app that helps you do your daily activities better.&lt;/p&gt;&lt;p&gt;This app programmed by a 15-year-old teenager who is interested in programming.&lt;/p&gt;&lt;p&gt;So you can support him with this links:&lt;/p&gt;&lt;p&gt;GitHub: &lt;a href=&quot;https://github.com/Matin-Ardestani&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#3CB9C9;&quot;&gt;github.com/Matin-Ardestani&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Social medeia: &lt;a href=&quot;https://bioly.io/MatinArdestani&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#3CB9C9;&quot;&gt;bioly.io/MatinArdestani&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -1385,8 +1385,8 @@ border: none;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-right: 1px solid rgb(11, 13, 18);
-background-color: #F9F9F9;
-color: #0B0D12;</string>
+background-color: #0B0D12;
+color: #F9F9F9;</string>
      </property>
      <property name="text">
       <string>Alaram</string>
