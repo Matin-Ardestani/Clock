@@ -17,26 +17,9 @@ from timepicker import Ui_TimePicker
 selected_hour = ''
 selected_min = ''
 selected_sec = ''
-alarms_counter = 1
+alarms_counter = 0
 
-class TimePicker(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        self.ui = Ui_TimePicker()
-        self.ui.setupUi(self)
 
-        self.ui.select_btn.clicked.connect(self.save)
-
-    def save(self):
-        global selected_hour
-        global selected_min
-        global selected_sec
-        global alarms_counter
-        alarms_counter += 1
-        selected_hour = self.ui.select_hour.currentText()
-        selected_min = self.ui.select_minute.currentText()
-        selected_sec = self.ui.select_second.currentText()
-        self.close()
 
 
 
@@ -177,15 +160,16 @@ class Ui_ClockWindow(object):
         self.frame_7.setObjectName("frame_7")
         self.alarm_Bbtn2 = QtWidgets.QLabel(self.frame_7)
         self.alarm_Bbtn2.setGeometry(QtCore.QRect(20, 10, 50, 20))
-        self.alarm_Bbtn2.setStyleSheet("background-color: #3CB9C9;\n"
+        self.alarm_Bbtn2.setStyleSheet("background-color: #DEDEDE;\n"
 "border-radius: 10px;")
+        self.alarm_Bbtn1.setText("")
         self.alarm_Bbtn2.setText("")
         self.alarm_Bbtn2.setObjectName("alarm_Bbtn2")
         self.alarm_btn2 = QtWidgets.QLabel(self.frame_7)
-        self.alarm_btn2.setGeometry(QtCore.QRect(47, 12, 20, 16))
+        self.alarm_btn2.setGeometry(QtCore.QRect(23, 12, 20, 16))
         self.alarm_btn2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.alarm_btn2.setStyleSheet("border-radius: 7px;\n"
-"background-color: #DEDEDE;")
+"background-color: #b5b5b5;")
         self.alarm_btn2.setText("")
         self.alarm_btn2.setObjectName("alarm_btn2")
         self.alarm_hour2 = QtWidgets.QLabel(self.alarm_cock2)
@@ -1148,7 +1132,7 @@ class Ui_ClockWindow(object):
         self.stop_F2.deleteLater()
         self.stop_F3.deleteLater()
         self.stop_F4.deleteLater()
-        # self.frame_3.deleteLater()
+
 
         # related to themes
         self.defualt_counter = 0
@@ -1164,9 +1148,12 @@ class Ui_ClockWindow(object):
         self.settings_btnlight.clicked.connect(lambda: self.setColor('Light'))
 
         # related to alarm
-
         self.alarm_newbtn.clicked.connect(self.createAlarmtime)
 
+        self.alarm_cock1.hide()
+        self.alarm_cock2.hide()
+        self.alarm_cock3.hide()
+        self.alarm_cock4.hide()
 
 
     #-------------------------Designer codes------------------------------------
@@ -1392,6 +1379,7 @@ class Ui_ClockWindow(object):
         if theme == 'def':
             self.defualt_counter += 1
             if self.defualt_theme == 'Dark':
+                self.current_theme = 'Dark'
                 dark_colors()
                 if self.defualt_counter > 1:
                     self.btn_settings.setStyleSheet('background-color: #0B0D12;')
@@ -1399,6 +1387,7 @@ class Ui_ClockWindow(object):
                     icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
                     self.btn_settings.setIcon(icon_dark)
             elif self.defualt_theme == 'Light':
+                self.current_theme = 'Light'
                 light_colors()
                 self.settings_btndef.setStyleSheet('background-color: #F9F9F9;border-radius: 15px;')
                 if self.defualt_counter > 1:
@@ -1409,6 +1398,7 @@ class Ui_ClockWindow(object):
 
 
         elif theme == 'Dark':
+            self.current_theme = 'Dark'
             dark_colors()
             self.btn_settings.setStyleSheet('background-color: #0B0D12;')
             icon_light = QtGui.QIcon()
@@ -1416,6 +1406,7 @@ class Ui_ClockWindow(object):
             self.btn_settings.setIcon(icon_light)
 
         elif theme == 'Light':
+            self.current_theme = 'Light'
             light_colors()
             self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
             icon_dark = QtGui.QIcon()
@@ -1425,9 +1416,43 @@ class Ui_ClockWindow(object):
 
     # alarm
     def createAlarmtime(self):
-        if alarms_counter >= 4:
-            self.alarm_newbtn.setEnabled(False)
-
         self.timepicker = TimePicker()
-        self.timepicker.show()           
+        def showing():
+            if alarms_counter >= 3:
+                self.alarm_newbtn.setEnabled(False)
+
         
+            if self.current_theme == 'Dark':
+                self.timepicker.setStyleSheet('background-color: #0B0D12; border:none')
+                self.timepicker.ui.label.setStyleSheet('color: #F9F9F9')
+                self.timepicker.ui.label_2.setStyleSheet('color: #F9F9F9')
+                self.timepicker.ui.label_3.setStyleSheet('color: #F9F9F9')
+
+
+            self.timepicker.show()
+        showing()
+        
+
+
+
+class TimePicker(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_TimePicker()
+        self.ui.setupUi(self)
+
+        self.ui.select_btn.clicked.connect(self.save)
+
+
+
+
+    def save(self):
+        global selected_hour
+        global selected_min
+        global selected_sec
+        global alarms_counter
+        alarms_counter += 1
+        selected_hour = self.ui.select_hour.currentText()
+        selected_min = self.ui.select_minute.currentText()
+        selected_sec = self.ui.select_second.currentText()
+        self.close()
