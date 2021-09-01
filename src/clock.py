@@ -9,9 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import darkdetect
 
 
 class Ui_ClockWindow(object):
+
+
+    #====================================Designer codes================================
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(570, 580)
@@ -46,7 +50,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.alarm_newbtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/myplus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.alarm_newbtn.setIcon(icon1)
         self.alarm_newbtn.setIconSize(QtCore.QSize(50, 50))
         self.alarm_newbtn.setObjectName("alarm_newbtn")
@@ -113,7 +117,7 @@ class Ui_ClockWindow(object):
         self.alarm_deletebtn1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.alarm_deletebtn1.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/delete-bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.alarm_deletebtn1.setIcon(icon2)
         self.alarm_deletebtn1.setIconSize(QtCore.QSize(20, 20))
         self.alarm_deletebtn1.setObjectName("alarm_deletebtn1")
@@ -581,7 +585,7 @@ class Ui_ClockWindow(object):
 "background-color: #DEDEDE;")
         self.btn_settings.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_settings.setIcon(icon6)
         self.btn_settings.setIconSize(QtCore.QSize(20, 20))
         self.btn_settings.setObjectName("btn_settings")
@@ -591,8 +595,33 @@ class Ui_ClockWindow(object):
         self.pages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.setColor()
 
+
+        #------------------------------------My codes--------------------------
+
+        # delete some objects
+        self.frame_4.deleteLater()
+        self.stop_F1.deleteLater()
+        self.stop_F2.deleteLater()
+        self.stop_F3.deleteLater()
+        self.stop_F4.deleteLater()
+
+        # related to themes
+        self.defualt_counter = 0
+
+        self.defualt_theme = darkdetect.theme()
+        if self.defualt_theme == 'Dark':
+            self.btn_alarm.setStyleSheet('border-right: 1px solid rgb(11, 13, 18);background-color: #0B0D12;color: #F9F9F9;')
+
+        self.setColor('def')
+
+        self.settings_btndef.clicked.connect(lambda: self.setColor('def'))
+        self.settings_btndark.clicked.connect(lambda: self.setColor('Dark'))
+        self.settings_btnlight.clicked.connect(lambda: self.setColor('Light'))
+
+
+
+    #-------------------------Designer codes------------------------------------
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Tools"))
@@ -626,49 +655,214 @@ class Ui_ClockWindow(object):
         self.label_11.setText(_translate("MainWindow", "System default"))
         self.label_12.setText(_translate("MainWindow", "About"))
         self.label_13.setText(_translate("MainWindow", "<html><head/><body><p>This is a multifunctional app that helps you do your daily activities better.</p><p>This app programmed by a 15-year-old teenager who is interested in programming.</p><p>So you can support him with this links:</p><p>GitHub: <a href=\"https://github.com/Matin-Ardestani\"><span style=\" text-decoration: underline; color:#0000ff;\">github.com/Matin-Ardestani</span></a></p><p>Social medeia: <a href=\"https://bioly.io/MatinArdestani\"><span style=\" text-decoration: underline; color:#0000ff;\">bioly.io/MatinArdestani</span></a></p></body></html>"))
-        self.btn_alarm.setText(_translate("MainWindow", "Alaram"))
+        self.btn_alarm.setText(_translate("MainWindow", "Alarm"))
         self.btn_timer.setText(_translate("MainWindow", "Timer"))
         self.btn_stopW.setText(_translate("MainWindow", "StopWatch"))
         self.btn_world.setText(_translate("MainWindow", "WorldClock"))
 
     # ==================================My codes=========================
-    def setColor(self):
-        self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
-        self.btn_alarm.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
-        self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
-        ])
+    def setColor(self , theme):
 
-        self.btn_timer.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_timer) , 
-        self.btn_timer.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
-        self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
-        ])
+        def dark_colors():
+            # moving between pages
+            icon_light = QtGui.QIcon()
+            icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
-        self.btn_stopW.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_stopwatch) , 
-        self.btn_stopW.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
-        self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
-        ])
+            icon_dark = QtGui.QIcon()
+            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
-        self.btn_world.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_world) , 
-        self.btn_world.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
-        self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
-        ])
+            self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
+            self.btn_alarm.setStyleSheet('background-color: #0B0D12; border-right: 1px solid #0B0D12;    color: #F9F9F9;'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;'),
+            self.btn_settings.setIcon(icon_dark)
+            ])
 
-        self.btn_settings.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_settings) , 
-        self.btn_settings.setStyleSheet('background-color: #F9F9F9;'),
-        self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE; color: #0B0D12'),
-        self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;')
-        ])
+            self.btn_timer.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_timer) , 
+            self.btn_timer.setStyleSheet('background-color: #0B0D12; border-right: 1px solid #0B0D12;    color: #F9F9F9;'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;'),
+            self.btn_settings.setIcon(icon_dark)
+            ])
+
+            self.btn_stopW.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_stopwatch) , 
+            self.btn_stopW.setStyleSheet('background-color: #0B0D12; border-right: 1px solid #0B0D12;    color: #F9F9F9;'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;'),
+            self.btn_settings.setIcon(icon_dark)
+            ])
+
+            self.btn_world.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_world) , 
+            self.btn_world.setStyleSheet('background-color: #0B0D12; border-right: 1px solid #0B0D12;    color: #F9F9F9;'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;'),
+            self.btn_settings.setIcon(icon_dark)
+            ])
+
+            self.btn_settings.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_settings) , 
+            self.btn_settings.setStyleSheet('background-color: #0B0D12;'),
+            self.btn_settings.setIcon(icon_light),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color: #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;')
+            ])
+
+            # alarm page
+            self.page_alarm.setStyleSheet('border:none; background-color: #0B0D12;')
+            self.alarm_hour1.setStyleSheet('color: #F9F9F9;')
+            self.alarm_min1.setStyleSheet('color: #F9F9F9;')
+            self.label.setStyleSheet('color: #F9F9F9;')
+            self.alarm_timeleft.setStyleSheet('color: #F9F9F9;')
+
+            # timer page
+            self.page_timer.setStyleSheet('border:none; background-color: #0B0D12;')
+            self.frame_8.setStyleSheet('background-color: #0B0D12; border-radius: 130px;')
+            self.timer_timeleft.setStyleSheet('color: #F9F9F9;')
+            self.timer_totaltime.setStyleSheet('color: #F9F9F9;')
+
+            # stopwatch page
+            self.page_stopwatch.setStyleSheet('border:none; background-color: #0B0D12;')
+            self.stop_hour.setStyleSheet('color: #F9F9F9;')
+            self.stop_min.setStyleSheet('color: #F9F9F9;')
+            self.stop_sec.setStyleSheet('color: #F9F9F9;')
+            self.label_8.setStyleSheet('color: #F9F9F9;')
+            self.label_10.setStyleSheet('color: #F9F9F9;')
+
+
+            # worldtime page
+            self.page_world.setStyleSheet('border:none; background-color: #0B0D12;')
+            self.world_city.setStyleSheet('color: #F9F9F9;')
+            self.world_cityTime.setStyleSheet('color: #F9F9F9;')
+
+            # settings page
+            self.page_settings.setStyleSheet('border:none; background-color: #0B0D12;')
+            self.label_3.setStyleSheet('color: #F9F9F9;')
+            self.label_5.setStyleSheet('color: #F9F9F9;')
+            self.label_6.setStyleSheet('color: #F9F9F9;')
+            self.label_11.setStyleSheet('color: #F9F9F9;')
+            self.label_12.setStyleSheet('color: #F9F9F9;')
+            self.label_13.setStyleSheet('color: #F9F9F9;')
+
+        def light_colors():
+            # moving between pages
+
+            icon_dark = QtGui.QIcon()
+            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+
+            self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
+            self.btn_alarm.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
+            ])
+
+            self.btn_timer.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_timer) , 
+            self.btn_timer.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
+            ])
+
+            self.btn_stopW.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_stopwatch) , 
+            self.btn_stopW.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
+            ])
+
+            self.btn_world.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_world) , 
+            self.btn_world.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_settings.setStyleSheet('background-color: #DEDEDE;')
+            ])
+
+            self.btn_settings.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_settings) , 
+            self.btn_settings.setStyleSheet('background-color: #F9F9F9;'),
+            self.btn_timer.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_stopW.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_world.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;    color:     #0B0D12'),
+            self.btn_alarm.setStyleSheet('border-right: 1px solid #0B0D12; background-color: #DEDEDE;'),
+            self.btn_settings.setIcon(icon_dark)
+            ])
+
+            # page alarm
+            self.page_alarm.setStyleSheet('background-color: #F9F9F9; border: none;')
+            self.alarm_hour1.setStyleSheet('color: #0B0D12;')
+            self.alarm_min1.setStyleSheet('color: #0B0D12;')
+            self.label.setStyleSheet('color: #0B0D12;')
+            self.alarm_timeleft.setStyleSheet('color: #0B0D12;')
+
+            # page timer
+            self.page_timer.setStyleSheet('background-color: #F9F9F9; border: none;')
+            self.frame_8.setStyleSheet('background-color: #F9F9F9;border-radius: 130px;')
+            self.timer_timeleft.setStyleSheet('color: #0B0D12;')
+            self.timer_totaltime.setStyleSheet('color: #0B0D12;')
+
+            # page stopwatch
+            self.page_stopwatch.setStyleSheet('background-color: #F9F9F9; border: none;')
+            self.stop_hour.setStyleSheet('color: #0B0D12;')
+            self.stop_min.setStyleSheet('color: #0B0D12;')
+            self.stop_sec.setStyleSheet('color: #0B0D12;')
+            self.label_8.setStyleSheet('color: #0B0D12;')
+            self.label_10.setStyleSheet('color: #0B0D12;')
+
+            # page worldtime
+            self.page_world.setStyleSheet('background-color: #F9F9F9; border: none;')
+            self.world_city.setStyleSheet('color: #0B0D12;')
+            self.world_cityTime.setStyleSheet('color: #0B0D12;')
+
+            # page settigns
+            self.page_settings.setStyleSheet('background-color: #F9F9F9; border: none;')
+            self.label_3.setStyleSheet('color: #0B0D12;')
+            self.label_5.setStyleSheet('color: #0B0D12;')
+            self.label_6.setStyleSheet('color: #0B0D12;')
+            self.label_11.setStyleSheet('color: #0B0D12;')
+            self.label_12.setStyleSheet('color: #0B0D12;')
+            self.label_13.setStyleSheet('color: #0B0D12;')
+
+        if theme == 'def':
+            self.defualt_counter += 1
+            if self.defualt_theme == 'Dark':
+                dark_colors()
+                if self.defualt_counter > 1:
+                    self.btn_settings.setStyleSheet('background-color: #0B0D12;')
+                    icon_dark = QtGui.QIcon()
+                    icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    self.btn_settings.setIcon(icon_dark)
+            elif self.defualt_theme == 'Light':
+                light_colors()
+                self.settings_btndef.setStyleSheet('background-color: #F9F9F9;border-radius: 15px;')
+                if self.defualt_counter > 1:
+                    self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
+                    icon_light = QtGui.QIcon()
+                    icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    self.btn_settings.setIcon(icon_light)
+
+
+        elif theme == 'Dark':
+            dark_colors()
+            self.btn_settings.setStyleSheet('background-color: #0B0D12;')
+            icon_light = QtGui.QIcon()
+            icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.btn_settings.setIcon(icon_light)
+
+        elif theme == 'Light':
+            light_colors()
+            self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
+            icon_dark = QtGui.QIcon()
+            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.btn_settings.setIcon(icon_dark)
