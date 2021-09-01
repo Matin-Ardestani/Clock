@@ -9,11 +9,38 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 import darkdetect
+from timepicker import Ui_TimePicker
+
+selected_hour = ''
+selected_min = ''
+selected_sec = ''
+alarms_counter = 1
+
+class TimePicker(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_TimePicker()
+        self.ui.setupUi(self)
+
+        self.ui.select_btn.clicked.connect(self.save)
+
+    def save(self):
+        global selected_hour
+        global selected_min
+        global selected_sec
+        global alarms_counter
+        alarms_counter += 1
+        selected_hour = self.ui.select_hour.currentText()
+        selected_min = self.ui.select_minute.currentText()
+        selected_sec = self.ui.select_second.currentText()
+        self.close()
+
 
 
 class Ui_ClockWindow(object):
-
 
     #====================================Designer codes================================
     def setupUi(self, MainWindow):
@@ -989,6 +1016,7 @@ class Ui_ClockWindow(object):
         self.stop_F2.deleteLater()
         self.stop_F3.deleteLater()
         self.stop_F4.deleteLater()
+        # self.frame_3.deleteLater()
 
         # related to themes
         self.defualt_counter = 0
@@ -1002,6 +1030,10 @@ class Ui_ClockWindow(object):
         self.settings_btndef.clicked.connect(lambda: self.setColor('def'))
         self.settings_btndark.clicked.connect(lambda: self.setColor('Dark'))
         self.settings_btnlight.clicked.connect(lambda: self.setColor('Light'))
+
+        # related to alarm
+
+        self.alarm_newbtn.clicked.connect(self.createAlarmtime)
 
 
 
@@ -1041,7 +1073,9 @@ class Ui_ClockWindow(object):
         self.btn_stopW.setText(_translate("MainWindow", "StopWatch"))
         self.btn_world.setText(_translate("MainWindow", "WorldClock"))
 
-    # ==================================My codes=========================
+    # ==================================My Functions=========================
+
+    # set theme
     def setColor(self , theme):
 
         def dark_colors():
@@ -1247,3 +1281,13 @@ class Ui_ClockWindow(object):
             icon_dark = QtGui.QIcon()
             icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.btn_settings.setIcon(icon_dark)
+
+
+    # alarm
+    def createAlarmtime(self):
+        if alarms_counter >= 4:
+            self.alarm_newbtn.setEnabled(False)
+
+        self.timepicker = TimePicker()
+        self.timepicker.show()           
+        

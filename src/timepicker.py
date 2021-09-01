@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Ui_TimePicker(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(550, 355)
@@ -386,13 +386,3 @@ class Ui_MainWindow(object):
         self.select_second.setItemText(58, _translate("MainWindow", "58"))
         self.select_second.setItemText(59, _translate("MainWindow", "59"))
         self.select_btn.setText(_translate("MainWindow", "Select"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
