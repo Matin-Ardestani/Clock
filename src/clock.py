@@ -13,6 +13,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import darkdetect
 from datetime import datetime
+from pygame import mixer
+from time import sleep
 
 from timepicker import Ui_TimePicker
 
@@ -1183,6 +1185,11 @@ class Ui_ClockWindow(object):
         self.alarm_deletebtn3.clicked.connect(lambda: self.deleteAlarmitem(3))
         self.alarm_deletebtn4.clicked.connect(lambda: self.deleteAlarmitem(4))
 
+        self.alarm_ring1 = QTimer()
+        self.alarm_ring2 = QTimer()
+        self.alarm_ring3 = QTimer()
+        self.alarm_ring4 = QTimer()
+
 
     #-------------------------Designer codes------------------------------------
     def retranslateUi(self, MainWindow):
@@ -1799,8 +1806,10 @@ class Ui_ClockWindow(object):
             global diff_counter1
             print('this is 1 and counter is:' , diff_counter1)
             if diff_counter1 == 0:
-                print('finish')
                 self.alarm_ring1.stop()
+
+                self.PlayRington()
+
 
             diff_counter1 -= 1
 
@@ -1839,6 +1848,9 @@ class Ui_ClockWindow(object):
         FTM = '%H:%M:%S'
         difference = datetime.strptime(then , FTM) - datetime.strptime(now , FTM)
         all_seconds = difference.total_seconds()
+        
+        if all_seconds < 0:
+            all_seconds = 86400 + all_seconds
 
         if alarm_number == 1:
             global diff_counter1
@@ -1871,3 +1883,19 @@ class Ui_ClockWindow(object):
             self.alarm_ring4 = QTimer()
             self.alarm_ring4.timeout.connect(lambda: self.ring(alarm_number , all_seconds))
             self.alarm_ring4.start(1000)
+
+
+
+    def PlayRington(self):
+
+        mixer.init()
+        mixer.music.load('/home/matin/Desktop/Tools/ringtone/alarm-ringtone.ogg')
+        mixer.music.play(loops=-1)
+
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
+        msg.setText("time over")
+        msg.setWindowTitle("ring")
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok )
+        msg.buttonClicked.connect(lambda: mixer.music.stop())
+        msg.exec_()
