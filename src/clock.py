@@ -12,12 +12,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import darkdetect
+from datetime import datetime
+
 from timepicker import Ui_TimePicker
 
 selected_hour = ''
 selected_min = ''
 selected_sec = ''
 alarms_counter = 0
+
+diff_counter1 = 0
+diff_counter2 = 0
+diff_counter3 = 0
+diff_counter4 = 0
 
 # timepicker class
 class TimePicker(QMainWindow):
@@ -1508,6 +1515,8 @@ class Ui_ClockWindow(object):
                     self.alarm_cock3.setGeometry(QtCore.QRect(0, 250, 570, 80))
                     self.alarm_cock4.setGeometry(QtCore.QRect(0, 350, 570, 80))
 
+                    self.getSeconds(1 , selected_hour , selected_min , selected_sec)
+
                 elif self.alarm_itemcounter == 2:
                     self.alarm_cock2.show()
                     self.alarm_hour2.setText(selected_hour)
@@ -1783,3 +1792,82 @@ class Ui_ClockWindow(object):
         elif btn_number == 4:
             self.alarm_item4 = False
             self.alarm_cock4.hide()            
+
+
+    def ring(self , alarm_number , difference):
+        if alarm_number == 1:
+            global diff_counter1
+            print('this is 1 and counter is:' , diff_counter1)
+            if diff_counter1 == 0:
+                print('finish')
+                self.alarm_ring1.stop()
+
+            diff_counter1 -= 1
+
+        elif alarm_number == 2:
+            global diff_counter2
+            print('this is 2 and counter is:' , diff_counter2)
+            if diff_counter2 == 0:
+                print('finish')
+                self.alarm_ring2.stop()
+
+            diff_counter2 -= 1
+
+        elif alarm_number == 3:
+            global diff_counter3
+            print('this is 3 and counter is:' , diff_counter3)
+            if diff_counter3 == 0:
+                print('finish')
+                self.alarm_ring3.stop()
+
+            diff_counter3 -= 1
+
+        elif alarm_number == 4:
+            global diff_counter4
+            print('this is 4 and counter is:' , diff_counter4)
+            if diff_counter4 == 0:
+                print('finish')
+                self.alarm_ring4.stop()
+
+            diff_counter4 -= 1
+
+    
+    def getSeconds(self , alarm_number , hour , minute , second):
+        current = datetime.now()
+        now = '%s:%s:%s' % (current.hour, current.minute , current.second)
+        then = '%s:%s:%s' % (hour , minute , second)
+        FTM = '%H:%M:%S'
+        difference = datetime.strptime(then , FTM) - datetime.strptime(now , FTM)
+        all_seconds = difference.total_seconds()
+
+        if alarm_number == 1:
+            global diff_counter1
+            diff_counter1 = int(all_seconds)
+
+            self.alarm_ring1 = QTimer()
+            self.alarm_ring1.timeout.connect(lambda: self.ring(alarm_number , all_seconds))
+            self.alarm_ring1.start(1000)
+
+        elif alarm_number == 2:
+            global diff_counter2
+            diff_counter2 = int(all_seconds)
+
+            self.alarm_ring2 = QTimer()
+            self.alarm_ring2.timeout.connect(lambda: self.ring(alarm_number , all_seconds))
+            self.alarm_ring2.start(1000)
+
+        elif alarm_number == 3:
+            global diff_counter3
+            diff_counter3 = int(all_seconds)
+
+            self.alarm_ring3 = QTimer()
+            self.alarm_ring3.timeout.connect(lambda: self.ring(alarm_number , all_seconds))
+            self.alarm_ring3.start(1000)
+
+        elif alarm_number == 4:
+            global diff_counter4
+            diff_counter4 = int(all_seconds)
+
+            self.alarm_ring4 = QTimer()
+            self.alarm_ring4.timeout.connect(lambda: self.ring(alarm_number , all_seconds))
+            self.alarm_ring4.start(1000)
