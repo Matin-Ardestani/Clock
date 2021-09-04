@@ -399,7 +399,7 @@ class Ui_ClockWindow(object):
         self.frame_9.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_9.setObjectName("frame_9")
         self.timer_stopbtn = QtWidgets.QPushButton(self.frame_9)
-        self.timer_stopbtn.setGeometry(QtCore.QRect(205, 20, 60, 60))
+        self.timer_stopbtn.setGeometry(QtCore.QRect(255 , 20, 60, 60))
         self.timer_stopbtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.timer_stopbtn.setStyleSheet("background-color: #DEDEDE;\n"
 "border-radius: 20px;")
@@ -409,8 +409,22 @@ class Ui_ClockWindow(object):
         self.timer_stopbtn.setIcon(icon3)
         self.timer_stopbtn.setIconSize(QtCore.QSize(50, 50))
         self.timer_stopbtn.setObjectName("timer_stopbtn")
+
+        self.timer_runbtn = QtWidgets.QPushButton(self.frame_9)
+        self.timer_runbtn.setGeometry(QtCore.QRect(135, 20, 60, 60))
+        self.timer_runbtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.timer_runbtn.setStyleSheet("background-color: #DEDEDE;\n"
+"border-radius: 20px;")
+        self.timer_runbtn.setText("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.timer_runbtn.setIcon(icon3)
+        self.timer_runbtn.setIconSize(QtCore.QSize(50, 50))
+        self.timer_runbtn.setObjectName("timer_runbtn")
+
+
         self.timer_pausebtn = QtWidgets.QPushButton(self.frame_9)
-        self.timer_pausebtn.setGeometry(QtCore.QRect(305, 20, 60, 60))
+        self.timer_pausebtn.setGeometry(QtCore.QRect(375, 20, 60, 60))
         self.timer_pausebtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.timer_pausebtn.setStyleSheet("background-color: #DEDEDE;\n"
 "border-radius: 20px;")
@@ -1190,29 +1204,39 @@ class Ui_ClockWindow(object):
         self.alarm_ring3 = QTimer()
         self.alarm_ring4 = QTimer()
 
+        # related to timer
+        self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.998 rgba(85, 87, 83, 0), stop:0.999 rgba(60, 185, 201, 255));}")
+
+        self.timer_stopbtn.setEnabled(False)
+        self.timer_pausebtn.setEnabled(False)
+
+        self.timer_runbtn.clicked.connect(self.runTimer)
+
+        self.pauesCounter = 0
+
 
     #-------------------------Designer codes------------------------------------
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Clock"))
         self.label.setText(_translate("MainWindow", ":"))
-        self.alarm_timeleft.setText(_translate("MainWindow", "Alarm in 6 hours and 30 minutes"))
+        self.alarm_timeleft.setText(_translate("MainWindow", "Loading..."))
         self.alarm_hour1.setText(_translate("MainWindow", "00"))
         self.alarm_min1.setText(_translate("MainWindow", "00"))
         self.label_2.setText(_translate("MainWindow", ":"))
-        self.alarm_timeleft2.setText(_translate("MainWindow", "Alarm in 6 hours and 30 minutes"))
+        self.alarm_timeleft2.setText(_translate("MainWindow", "Loading..."))
         self.alarm_hour2.setText(_translate("MainWindow", "00"))
         self.alarm_min2.setText(_translate("MainWindow", "00"))
         self.label_16.setText(_translate("MainWindow", ":"))
-        self.alarm_timeleft3.setText(_translate("MainWindow", "Alarm in 6 hours and 30 minutes"))
+        self.alarm_timeleft3.setText(_translate("MainWindow", "Loading..."))
         self.alarm_hour3.setText(_translate("MainWindow", "00"))
         self.alarm_min3.setText(_translate("MainWindow", "00"))
         self.label_17.setText(_translate("MainWindow", ":"))
-        self.alarm_timeleft4.setText(_translate("MainWindow", "Alarm in 6 hours and 30 minutes"))
+        self.alarm_timeleft4.setText(_translate("MainWindow", "Loading..."))
         self.alarm_hour4.setText(_translate("MainWindow", "00"))
         self.alarm_min4.setText(_translate("MainWindow", "00"))
-        self.timer_timeleft.setText(_translate("MainWindow", "13"))
-        self.timer_totaltime.setText(_translate("MainWindow", "Total 50 seconds"))
+        self.timer_timeleft.setText(_translate("MainWindow", "0"))
+        self.timer_totaltime.setText(_translate("MainWindow", "Total 0 seconds"))
         self.stop_hour.setText(_translate("MainWindow", "00"))
         self.label_8.setText(_translate("MainWindow", ":"))
         self.stop_min.setText(_translate("MainWindow", "02"))
@@ -1492,7 +1516,7 @@ class Ui_ClockWindow(object):
             self.btn_settings.setIcon(icon_dark)
 
 
-    # alarm
+    # ---------------------------------alarm----------------------------------
     def createAlarmtime(self):
         self.timepicker = TimePicker()
 
@@ -1584,7 +1608,6 @@ class Ui_ClockWindow(object):
         self.timepicker.ui.select_btn.clicked.connect(save)
 
         self.timepicker.show()
-
 
     def OnOffitem(self , btn_number , sit):
         if sit == None:
@@ -1686,8 +1709,6 @@ class Ui_ClockWindow(object):
                 self.alarm_item4 = False
                 self.alarm_Bbtn4.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
                 self.alarm_ring4.stop()
-
-
 
     def deleteAlarmitem(self , btn_number):
         global alarms_counter
@@ -1840,7 +1861,6 @@ class Ui_ClockWindow(object):
             self.alarm_item4 = False
             self.alarm_cock4.hide() 
 
-
     def ring(self , alarm_number , difference):
 
         def totalLeft(alarm_num , seconds):
@@ -1924,7 +1944,6 @@ class Ui_ClockWindow(object):
 
             diff_counter4 -= 1
 
-    
     def getSeconds(self , alarm_number , hour , minute , second):
         current = datetime.now()
         now = '%s:%s:%s' % (current.hour, current.minute , current.second)
@@ -1968,8 +1987,6 @@ class Ui_ClockWindow(object):
             self.alarm_ring4.timeout.connect(lambda: self.ring(alarm_number , all_seconds))
             self.alarm_ring4.start(1000)
 
-
-
     def PlayRington(self):
 
         now = datetime.now()
@@ -1987,3 +2004,120 @@ class Ui_ClockWindow(object):
         msg.setStandardButtons(QtWidgets.QMessageBox.Ok )
         msg.buttonClicked.connect(lambda: mixer.music.stop())
         msg.exec_()
+
+
+
+    # --------------------------timer-------------------------
+    def runTimer(self):
+        self.timepicker = TimePicker()
+
+
+        def changeSeconds():
+            self.seconds -= 1
+            self.timer_timeleft.setText(str(self.seconds))
+
+            numberplus = str(self.color_timer + 1)
+            
+            if len(str(self.color_timer)) == 2:
+                number = '0' + str(self.color_timer)
+            elif len(str(self.color_timer)) == 1:
+                number = '00' + str(self.color_timer)
+            else:
+                number = str(self.color_timer)
+
+            if len(numberplus) == 2:
+                numberplus = '0' + numberplus
+            elif len(numberplus) == 1:
+                numberplus = '00' + numberplus
+
+            print(self.color_timer , number , numberplus)
+
+            quary = "QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.%s rgba(85, 87, 83, 0), stop:0.%s rgba(60, 185, 201, 255));}" % (numberplus , number)
+
+            self.color_timer += self.first_color_timer
+
+            self.timer_Cleft.setStyleSheet(quary)
+            
+            if self.seconds == 0:
+                self.timer.stop()
+
+                self.timer_stopbtn.setEnabled(False)
+                self.timer_pausebtn.setEnabled(False)
+                self.timer_runbtn.setEnabled(True)
+
+                self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.999 rgba(85, 87, 83, 0), stop:0.999 rgba(60, 185, 201, 255));}")
+
+                mixer.init()
+                mixer.music.load('/home/matin/Desktop/Clock/ringtone/alarm-ringtone.ogg')
+                mixer.music.play(loops=-1)
+
+                msg = QtWidgets.QMessageBox()
+                msg.setIcon(QtWidgets.QMessageBox.Information)
+                msg.setText("Times up                     ")
+                msg.setWindowTitle("Timer")
+                msg.setStandardButtons(QtWidgets.QMessageBox.Ok )
+                msg.buttonClicked.connect(lambda: [mixer.music.stop(), self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.001 rgba(85, 87, 83, 0), stop:0.000 rgba(60, 185, 201, 255));}") ,self.timer_totaltime.setText('Total 0 seconds')])
+                msg.exec_()
+
+        def timerStop():
+            self.timer.stop()
+            self.timer_runbtn.setEnabled(True)
+            self.timer_stopbtn.setEnabled(False)
+            self.timer_pausebtn.setEnabled(False)
+            self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.001 rgba(85, 87, 83, 0), stop:0.000 rgba(60, 185, 201, 255));}")
+            self.timer_timeleft.setText('0')
+            self.timer_totaltime.setText('Total 0 seconds')
+
+        def timerPaues():
+            self.pauesCounter += 1
+            if self.pauesCounter % 2 != 0:
+                self.timer.stop()
+                change_icon = QtGui.QIcon()
+                change_icon.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.timer_pausebtn.setIcon(change_icon)
+            else:
+                change_icon = QtGui.QIcon()
+                change_icon.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.timer_pausebtn.setIcon(change_icon)
+                self.timer.start(1000)
+
+        def run():
+            if (self.timepicker.ui.select_hour.currentText() == '00') and (self.timepicker.ui.select_minute.currentText() == '00') and (self.timepicker.ui.select_second.currentText() == '00'):
+                pass
+            else:
+                global selected_hour
+                global selected_min
+                global selected_sec
+                global alarms_counter
+                alarms_counter += 1
+                selected_hour = self.timepicker.ui.select_hour.currentText()
+                selected_min = self.timepicker.ui.select_minute.currentText()
+                selected_sec = self.timepicker.ui.select_second.currentText()
+                self.timepicker.close()
+
+                self.timer_runbtn.setEnabled(False)
+                self.timer_stopbtn.setEnabled(True)
+                self.timer_pausebtn.setEnabled(True)
+                self.timer_stopbtn.clicked.connect(timerStop)
+                self.timer_pausebtn.clicked.connect(timerPaues)
+
+                self.seconds = ( int(selected_hour) * 3600 ) + ( int(selected_min) * 60 ) + ( int(selected_sec) )
+                self.color_timer = int(999 / self.seconds) 
+                self.first_color_timer = self.color_timer
+
+                self.timer_timeleft.setText(str(self.seconds))
+                self.timer_totaltime.setText('Total %i seconds' % self.seconds)
+                self.timer = QTimer()
+                self.timer.timeout.connect(changeSeconds)
+                self.timer.start(1000)
+
+
+
+        if self.current_theme == 'Dark':
+            self.timepicker.setStyleSheet('background-color: #0B0D12; border:none')
+            self.timepicker.ui.label.setStyleSheet('color: #F9F9F9')
+            self.timepicker.ui.label_2.setStyleSheet('color: #F9F9F9')
+            self.timepicker.ui.label_3.setStyleSheet('color: #F9F9F9')
+
+        self.timepicker.ui.select_btn.clicked.connect(run)
+        self.timepicker.show()
