@@ -46,7 +46,7 @@ class Ui_ClockWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(570, 580))
         MainWindow.setMaximumSize(QtCore.QSize(570, 580))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: #F9F9F9;")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -74,7 +74,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.alarm_newbtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.alarm_newbtn.setIcon(icon1)
         self.alarm_newbtn.setIconSize(QtCore.QSize(50, 50))
         self.alarm_newbtn.setObjectName("alarm_newbtn")
@@ -141,7 +141,7 @@ class Ui_ClockWindow(object):
         self.alarm_deletebtn1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.alarm_deletebtn1.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.alarm_deletebtn1.setIcon(icon2)
         self.alarm_deletebtn1.setIconSize(QtCore.QSize(20, 20))
         self.alarm_deletebtn1.setObjectName("alarm_deletebtn1")
@@ -405,7 +405,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.timer_stopbtn.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.timer_stopbtn.setIcon(icon3)
         self.timer_stopbtn.setIconSize(QtCore.QSize(50, 50))
         self.timer_stopbtn.setObjectName("timer_stopbtn")
@@ -416,7 +416,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.timer_pausebtn.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.timer_pausebtn.setIcon(icon4)
         self.timer_pausebtn.setIconSize(QtCore.QSize(50, 50))
         self.timer_pausebtn.setObjectName("timer_pausebtn")
@@ -502,7 +502,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.stop_flagbtn.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.stop_flagbtn.setIcon(icon5)
         self.stop_flagbtn.setIconSize(QtCore.QSize(50, 50))
         self.stop_flagbtn.setObjectName("stop_flagbtn")
@@ -1125,7 +1125,7 @@ class Ui_ClockWindow(object):
 "background-color: #DEDEDE;")
         self.btn_settings.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_settings.setIcon(icon6)
         self.btn_settings.setIconSize(QtCore.QSize(20, 20))
         self.btn_settings.setObjectName("btn_settings")
@@ -1194,7 +1194,7 @@ class Ui_ClockWindow(object):
     #-------------------------Designer codes------------------------------------
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Tools"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Clock"))
         self.label.setText(_translate("MainWindow", ":"))
         self.alarm_timeleft.setText(_translate("MainWindow", "Alarm in 6 hours and 30 minutes"))
         self.alarm_hour1.setText(_translate("MainWindow", "00"))
@@ -1243,10 +1243,10 @@ class Ui_ClockWindow(object):
         def dark_colors():
             # moving between pages
             icon_light = QtGui.QIcon()
-            icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
             icon_dark = QtGui.QIcon()
-            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
             self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
             self.btn_alarm.setStyleSheet('background-color: #0B0D12; border-right: 1px solid #0B0D12;    color: #F9F9F9;'),
@@ -1300,7 +1300,7 @@ class Ui_ClockWindow(object):
             self.label.setStyleSheet('color: #F9F9F9;')
             self.alarm_timeleft.setStyleSheet('color: #F9F9F9;')
             deleteicon_light = QtGui.QIcon()
-            deleteicon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/delete-bin-light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            deleteicon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/delete-bin-light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.alarm_deletebtn1.setIcon(deleteicon_light)
 
 
@@ -1355,7 +1355,7 @@ class Ui_ClockWindow(object):
             # moving between pages
 
             icon_dark = QtGui.QIcon()
-            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
             self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
             self.btn_alarm.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
@@ -1405,7 +1405,7 @@ class Ui_ClockWindow(object):
             self.label.setStyleSheet('color: #0B0D12;')
             self.alarm_timeleft.setStyleSheet('color: #0B0D12;')
             deleteicon_dark = QtGui.QIcon()
-            deleteicon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            deleteicon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.alarm_deletebtn1.setIcon(deleteicon_dark)
 
             self.alarm_hour2.setStyleSheet('color: #0B0D12;')
@@ -1462,7 +1462,7 @@ class Ui_ClockWindow(object):
                 if self.defualt_counter > 1:
                     self.btn_settings.setStyleSheet('background-color: #0B0D12;')
                     icon_dark = QtGui.QIcon()
-                    icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-light.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
                     self.btn_settings.setIcon(icon_dark)
             elif self.defualt_theme == 'Light':
                 self.current_theme = 'Light'
@@ -1471,7 +1471,7 @@ class Ui_ClockWindow(object):
                 if self.defualt_counter > 1:
                     self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
                     icon_light = QtGui.QIcon()
-                    icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-dark.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
                     self.btn_settings.setIcon(icon_light)
 
 
@@ -1480,7 +1480,7 @@ class Ui_ClockWindow(object):
             dark_colors()
             self.btn_settings.setStyleSheet('background-color: #0B0D12;')
             icon_light = QtGui.QIcon()
-            icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_light.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.btn_settings.setIcon(icon_light)
 
         elif theme == 'Light':
@@ -1488,7 +1488,7 @@ class Ui_ClockWindow(object):
             light_colors()
             self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
             icon_dark = QtGui.QIcon()
-            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Tools/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_dark.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.btn_settings.setIcon(icon_dark)
 
 
@@ -1842,9 +1842,25 @@ class Ui_ClockWindow(object):
 
 
     def ring(self , alarm_number , difference):
+
+        def totalLeft(alarm_num , seconds):
+            hour = seconds // 3600
+            minute = (seconds - (hour*3600)) // 60
+            if alarm_num == 1:
+                self.alarm_timeleft.setText('Alarm in %i hours and %i minutes' % (hour , minute))
+            elif alarm_num == 2:
+                self.alarm_timeleft2.setText('Alarm in %i hours and %i minutes' % (hour , minute))
+            elif alarm_num == 3:
+                self.alarm_timeleft3.setText('Alarm in %i hours and %i minutes' % (hour , minute))
+            elif alarm_num == 4:
+                self.alarm_timeleft4.setText('Alarm in %i hours and %i minutes' % (hour , minute))
+
+
         if alarm_number == 1:
             global diff_counter1
-            # print('this is 1 and counter is:' , diff_counter1)
+
+            totalLeft(1 , diff_counter1)
+
             if diff_counter1 == 0:
                 self.alarm_ring1.stop()
 
@@ -1859,7 +1875,9 @@ class Ui_ClockWindow(object):
 
         elif alarm_number == 2:
             global diff_counter2
-            print('this is 2 and counter is:' , diff_counter2)
+            
+            totalLeft(2 , diff_counter2)
+
             if diff_counter2 == 0:
                 self.alarm_ring2.stop()
 
@@ -1874,7 +1892,9 @@ class Ui_ClockWindow(object):
 
         elif alarm_number == 3:
             global diff_counter3
-            print('this is 3 and counter is:' , diff_counter3)
+
+            totalLeft(3 , diff_counter3)
+
             if diff_counter3 == 0:
                 self.alarm_ring3.stop()
 
@@ -1889,7 +1909,9 @@ class Ui_ClockWindow(object):
 
         elif alarm_number == 4:
             global diff_counter4
-            print('this is 4 and counter is:' , diff_counter4)
+            
+            totalLeft(4 , diff_counter4)
+
             if diff_counter4 == 0:
                 self.alarm_ring4.stop()
 
@@ -1910,7 +1932,7 @@ class Ui_ClockWindow(object):
         FTM = '%H:%M:%S'
         difference = datetime.strptime(then , FTM) - datetime.strptime(now , FTM)
         all_seconds = difference.total_seconds()
-        
+
         if all_seconds < 0:
             all_seconds = 86400 + all_seconds
 
@@ -1955,7 +1977,7 @@ class Ui_ClockWindow(object):
         M = now.minute
 
         mixer.init()
-        mixer.music.load('/home/matin/Desktop/Tools/ringtone/alarm-ringtone.ogg')
+        mixer.music.load('/home/matin/Desktop/Clock/ringtone/alarm-ringtone.ogg')
         mixer.music.play(loops=-1)
 
         msg = QtWidgets.QMessageBox()
