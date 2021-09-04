@@ -1536,6 +1536,8 @@ class Ui_ClockWindow(object):
                     self.alarm_cock3.setGeometry(QtCore.QRect(0, 250, 570, 80))
                     self.alarm_cock4.setGeometry(QtCore.QRect(0, 350, 570, 80))
 
+                    self.getSeconds(2 , selected_hour , selected_min , selected_sec)
+
                 elif self.alarm_itemcounter == 3:
                     self.alarm_cock3.show()
                     self.alarm_hour3.setText(selected_hour)
@@ -1548,6 +1550,8 @@ class Ui_ClockWindow(object):
                     self.alarm_cock2.setGeometry(QtCore.QRect(0, 150, 570, 80))
                     self.alarm_cock4.setGeometry(QtCore.QRect(0, 350, 570, 80))
 
+                    self.getSeconds(3 , selected_hour , selected_min , selected_sec)
+
                 elif self.alarm_itemcounter == 4:
                     self.alarm_cock4.show()
                     self.alarm_hour4.setText(selected_hour)
@@ -1559,6 +1563,8 @@ class Ui_ClockWindow(object):
                     self.alarm_cock1.setGeometry(QtCore.QRect(0, 50, 570, 80))
                     self.alarm_cock2.setGeometry(QtCore.QRect(0, 150, 570, 80))
                     self.alarm_cock3.setGeometry(QtCore.QRect(0, 250, 570, 80))
+
+                    self.getSeconds(4 , selected_hour , selected_min , selected_sec)
 
         
 
@@ -1587,76 +1593,100 @@ class Ui_ClockWindow(object):
                     self.alarm_btn1.setGeometry(QtCore.QRect(23, 12, 20, 16))
                     self.alarm_item1 = False
                     self.alarm_Bbtn1.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                    self.alarm_ring1.stop()
                 else:
                     self.alarm_btn1.setGeometry(QtCore.QRect(47, 12, 20, 16))
                     self.alarm_item1 = True
                     self.alarm_Bbtn1.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                    self.getSeconds(1 , self.alarm_hour1.text() , self.alarm_min1.text() , 0)
                 
             elif btn_number == 2:
                 if self.alarm_item2 == True:
                     self.alarm_btn2.setGeometry(QtCore.QRect(23, 12, 20, 16))
                     self.alarm_item2 = False
                     self.alarm_Bbtn2.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                    self.alarm_ring2.stop()
                 else:
                     self.alarm_btn2.setGeometry(QtCore.QRect(47, 12, 20, 16))
                     self.alarm_item2 = True
                     self.alarm_Bbtn2.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                    self.getSeconds(2 , self.alarm_hour2.text() , self.alarm_min2.text() , 0)
 
             elif btn_number == 3:
                 if self.alarm_item3 == True:
                     self.alarm_btn3.setGeometry(QtCore.QRect(23, 12, 20, 16))
                     self.alarm_item3 = False
                     self.alarm_Bbtn3.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                    self.alarm_ring3.stop()
                 else:
                     self.alarm_btn3.setGeometry(QtCore.QRect(47, 12, 20, 16))
                     self.alarm_item3 = True
                     self.alarm_Bbtn3.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                    self.getSeconds(3 , self.alarm_hour3.text() , self.alarm_min3.text() , 0)
 
             elif btn_number == 4:
                 if self.alarm_item4 == True:
                     self.alarm_btn4.setGeometry(QtCore.QRect(23, 12, 20, 16))
                     self.alarm_item4 = False
                     self.alarm_Bbtn4.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                    self.alarm_ring4.stop()
                 else:
                     self.alarm_btn4.setGeometry(QtCore.QRect(47, 12, 20, 16))
                     self.alarm_item4 = True
                     self.alarm_Bbtn4.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                    self.getSeconds(4 , self.alarm_hour4.text() , self.alarm_min4.text() , 0)
 
         elif sit == True:
             if btn_number == 1:
                 self.alarm_btn1.setGeometry(QtCore.QRect(47, 12, 20, 16))
                 self.alarm_item1 = True
                 self.alarm_Bbtn1.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                self.getSeconds(1 , self.alarm_hour1.text() , self.alarm_min1.text() , 0)
+
             elif btn_number == 2:
                 self.alarm_btn2.setGeometry(QtCore.QRect(47, 12, 20, 16))
                 self.alarm_item2 = True
                 self.alarm_Bbtn2.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                self.getSeconds(2 , self.alarm_hour2.text() , self.alarm_min2.text() , 0)
+
             elif btn_number == 3:
                 self.alarm_btn3.setGeometry(QtCore.QRect(47, 12, 20, 16))
                 self.alarm_item3 = True
                 self.alarm_Bbtn3.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                self.getSeconds(3 , self.alarm_hour3.text() , self.alarm_min3.text() , 0)
+
             elif btn_number == 4:
                 self.alarm_btn4.setGeometry(QtCore.QRect(47, 12, 20, 16))
                 self.alarm_item4 = True
                 self.alarm_Bbtn4.setStyleSheet('background-color: #3CB9C9; border-radius: 10px;')
+                self.getSeconds(4 , self.alarm_hour4.text() , self.alarm_min4.text() , 0)
+
 
         elif sit == False:
             if btn_number == 1:
                 self.alarm_btn1.setGeometry(QtCore.QRect(23, 12, 20, 16))
                 self.alarm_item1 = False
                 self.alarm_Bbtn1.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                self.alarm_ring1.stop()
+
             elif btn_number == 2:
                 self.alarm_btn2.setGeometry(QtCore.QRect(23, 12, 20, 16))
                 self.alarm_item2 = False
                 self.alarm_Bbtn2.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                self.alarm_ring2.stop()
+
             elif btn_number == 3:
                 self.alarm_btn3.setGeometry(QtCore.QRect(23, 12, 20, 16))
                 self.alarm_item3 = False
                 self.alarm_Bbtn3.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                self.alarm_ring3.stop()
+
             elif btn_number == 4:
                 self.alarm_btn4.setGeometry(QtCore.QRect(23, 12, 20, 16))
                 self.alarm_item4 = False
                 self.alarm_Bbtn4.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+                self.alarm_ring4.stop()
+
 
 
     def deleteAlarmitem(self , btn_number):
@@ -1667,22 +1697,33 @@ class Ui_ClockWindow(object):
 
         if btn_number == 1:
             if (self.alarm_cock4.isHidden() == True) and (self.alarm_cock3.isHidden() == True) and (self.alarm_cock2.isHidden() == True):
-                self.alarm_item1 = False
+                self.OnOffitem(1 , False)
                 self.alarm_cock1.hide()
 
             elif (self.alarm_cock4.isHidden() == True) and (self.alarm_cock3.isHidden() == True) and (self.alarm_cock2.isHidden() == False):
-                if self.alarm_item2 == True:
-                    self.OnOffitem(1 , True)
-                elif self.alarm_item2 == False:
-                    self.OnOffitem(1 , False)
 
                 self.alarm_hour1.setText(self.alarm_hour2.text())
                 self.alarm_min1.setText(self.alarm_min2.text())
-                self.alarm_item2 = False
                 self.alarm_cock2.hide()
+
+                if self.alarm_item2 == True:
+                    self.OnOffitem(1 , True)
+                elif self.alarm_item2 == False:
+                    self.OnOffitem(1 , False)
+
+                self.OnOffitem(2 , False)
 
             elif (self.alarm_cock4.isHidden() == True) and (self.alarm_cock3.isHidden() == False) and (self.alarm_cock2.isHidden() == False):
 
+                two_h = self.alarm_hour2.text()
+                two_m = self.alarm_min2.text()
+                self.alarm_hour2.setText(self.alarm_hour3.text())
+                self.alarm_min2.setText(self.alarm_min3.text())
+                self.alarm_cock3.hide()
+
+                self.alarm_hour1.setText(two_h)
+                self.alarm_min1.setText(two_m)
+
                 if self.alarm_item2 == True:
                     self.OnOffitem(1 , True)
                 elif self.alarm_item2 == False:
@@ -1693,18 +1734,26 @@ class Ui_ClockWindow(object):
                 elif self.alarm_item3 == False:
                     self.OnOffitem(2 , False)
 
-                two_h = self.alarm_hour2.text()
-                two_m = self.alarm_min2.text()
-                self.alarm_hour2.setText(self.alarm_hour3.text())
-                self.alarm_min2.setText(self.alarm_min3.text())
-                self.alarm_item3 = False
-                self.alarm_cock3.hide()
-
-                self.alarm_hour1.setText(two_h)
-                self.alarm_min1.setText(two_m)
+                self.OnOffitem(3 , False)
 
             elif (self.alarm_cock4.isHidden() == False) and (self.alarm_cock3.isHidden() == False) and (self.alarm_cock2.isHidden() == False):
 
+                three_h = self.alarm_hour3.text()
+                three_m = self.alarm_min3.text()
+
+                two_h = self.alarm_hour2.text()
+                two_m = self.alarm_min2.text()
+
+                self.alarm_hour3.setText(self.alarm_hour4.text())
+                self.alarm_min3.setText(self.alarm_min4.text())
+                self.alarm_cock4.hide()
+
+                self.alarm_hour2.setText(three_h)
+                self.alarm_min2.setText(three_m)
+
+                self.alarm_hour1.setText(two_h)
+                self.alarm_min1.setText(two_m)
+
                 if self.alarm_item2 == True:
                     self.OnOffitem(1 , True)
                 elif self.alarm_item2 == False:
@@ -1720,42 +1769,37 @@ class Ui_ClockWindow(object):
                 elif self.alarm_item4 == False:
                     self.OnOffitem(3 , False)
 
-                three_h = self.alarm_hour3.text()
-                three_m = self.alarm_min3.text()
-
-                two_h = self.alarm_hour2.text()
-                two_m = self.alarm_min2.text()
-
-                self.alarm_hour3.setText(self.alarm_hour4.text())
-                self.alarm_min3.setText(self.alarm_min4.text())
-                self.alarm_item4 = False
-                self.alarm_cock4.hide()
-
-                self.alarm_hour2.setText(three_h)
-                self.alarm_min2.setText(three_m)
-
-                self.alarm_hour1.setText(two_h)
-                self.alarm_min1.setText(two_m)
+                self.OnOffitem(4 , False)
                 
-
-            
 
         elif btn_number == 2:
             if (self.alarm_cock3.isHidden() == True) and (self.alarm_cock4.isHidden() == True):
-                self.alarm_item2 = False
+                self.OnOffitem(2 , False)
                 self.alarm_cock2.hide()
             elif (self.alarm_cock3.isHidden() == False) and (self.alarm_cock4.isHidden() == True):
+
+                self.alarm_hour2.setText(self.alarm_hour3.text())
+                self.alarm_min2.setText(self.alarm_min3.text())
+                self.alarm_cock3.hide()
 
                 if self.alarm_item3 == True:
                     self.OnOffitem(2 , True)
                 elif self.alarm_item3 == False:
                     self.OnOffitem(2 , False)
 
-                self.alarm_hour2.setText(self.alarm_hour3.text())
-                self.alarm_min2.setText(self.alarm_min3.text())
-                self.alarm_item3 = False
-                self.alarm_cock3.hide()
+                self.OnOffitem(3 , False)
+
             elif (self.alarm_cock3.isHidden() == False) and (self.alarm_cock4.isHidden() == False):
+
+                three_h = self.alarm_hour3.text()
+                three_m = self.alarm_min3.text()
+
+                self.alarm_hour3.setText(self.alarm_hour4.text())
+                self.alarm_min3.setText(self.alarm_min4.text())
+                self.alarm_cock4.hide()
+
+                self.alarm_hour2.setText(three_h)
+                self.alarm_min2.setText(three_m)
 
                 if self.alarm_item3 == True:
                     self.OnOffitem(2 , True)
@@ -1767,46 +1811,46 @@ class Ui_ClockWindow(object):
                 elif self.alarm_item4 == False:
                     self.OnOffitem(3 , False)
 
-                three_h = self.alarm_hour3.text()
-                three_m = self.alarm_min3.text()
-
-                self.alarm_hour3.setText(self.alarm_hour4.text())
-                self.alarm_min3.setText(self.alarm_min4.text())
-                self.alarm_item4 = False
-                self.alarm_cock4.hide()
-
-                self.alarm_hour2.setText(three_h)
-                self.alarm_min2.setText(three_m)
+                self.OnOffitem(4 , False)
             
 
         elif btn_number == 3:
             if self.alarm_cock4.isHidden() == False:
 
+                self.alarm_hour3.setText(self.alarm_hour4.text())
+                self.alarm_min3.setText(self.alarm_min4.text())
+                self.alarm_cock4.hide()
+
                 if self.alarm_item4 == True:
                     self.OnOffitem(3 , True)
                 elif self.alarm_item4 == False:
                     self.OnOffitem(3 , False)
 
-                self.alarm_hour3.setText(self.alarm_hour4.text())
-                self.alarm_min3.setText(self.alarm_min4.text())
-                self.alarm_item4 = False
-                self.alarm_cock4.hide()
+                self.OnOffitem(4 , False)
+
+
             else:
+                self.OnOffitem(3 , False)
                 self.alarm_cock3.hide()
 
         
 
         elif btn_number == 4:
+            self.OnOffitem(4 , False)
             self.alarm_item4 = False
-            self.alarm_cock4.hide()            
+            self.alarm_cock4.hide() 
 
 
     def ring(self , alarm_number , difference):
         if alarm_number == 1:
             global diff_counter1
-            print('this is 1 and counter is:' , diff_counter1)
+            # print('this is 1 and counter is:' , diff_counter1)
             if diff_counter1 == 0:
                 self.alarm_ring1.stop()
+
+                self.alarm_btn1.setGeometry(QtCore.QRect(23, 12, 20, 16))
+                self.alarm_item1 = False
+                self.alarm_Bbtn1.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
 
                 self.PlayRington()
 
@@ -1817,8 +1861,14 @@ class Ui_ClockWindow(object):
             global diff_counter2
             print('this is 2 and counter is:' , diff_counter2)
             if diff_counter2 == 0:
-                print('finish')
                 self.alarm_ring2.stop()
+
+                self.alarm_btn2.setGeometry(QtCore.QRect(23, 12, 20, 16))
+                self.alarm_item2 = False
+                self.alarm_Bbtn2.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+
+                self.PlayRington()
+
 
             diff_counter2 -= 1
 
@@ -1826,8 +1876,14 @@ class Ui_ClockWindow(object):
             global diff_counter3
             print('this is 3 and counter is:' , diff_counter3)
             if diff_counter3 == 0:
-                print('finish')
                 self.alarm_ring3.stop()
+
+                self.alarm_btn3.setGeometry(QtCore.QRect(23, 12, 20, 16))
+                self.alarm_item3 = False
+                self.alarm_Bbtn3.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+
+                self.PlayRington()
+
 
             diff_counter3 -= 1
 
@@ -1835,8 +1891,14 @@ class Ui_ClockWindow(object):
             global diff_counter4
             print('this is 4 and counter is:' , diff_counter4)
             if diff_counter4 == 0:
-                print('finish')
                 self.alarm_ring4.stop()
+
+                self.alarm_btn4.setGeometry(QtCore.QRect(23, 12, 20, 16))
+                self.alarm_item4 = False
+                self.alarm_Bbtn4.setStyleSheet('background-color: #DEDEDE; border-radius: 10px;')
+
+                self.PlayRington()
+
 
             diff_counter4 -= 1
 
@@ -1888,14 +1950,18 @@ class Ui_ClockWindow(object):
 
     def PlayRington(self):
 
+        now = datetime.now()
+        H = now.hour
+        M = now.minute
+
         mixer.init()
         mixer.music.load('/home/matin/Desktop/Tools/ringtone/alarm-ringtone.ogg')
         mixer.music.play(loops=-1)
 
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
-        msg.setText("time over")
-        msg.setWindowTitle("ring")
+        msg.setText("It is %s:%s                     " % (H , M))
+        msg.setWindowTitle("Alarm")
         msg.setStandardButtons(QtWidgets.QMessageBox.Ok )
         msg.buttonClicked.connect(lambda: mixer.music.stop())
         msg.exec_()
