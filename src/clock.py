@@ -2053,7 +2053,7 @@ class Ui_ClockWindow(object):
 
                 msg = QtWidgets.QMessageBox()
                 msg.setIcon(QtWidgets.QMessageBox.Information)
-                msg.setText("Times up                     ")
+                msg.setText("Time finished                     ")
                 msg.setWindowTitle("Timer")
                 msg.setStandardButtons(QtWidgets.QMessageBox.Ok )
                 msg.buttonClicked.connect(lambda: [mixer.music.stop(), self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.001 rgba(85, 87, 83, 0), stop:0.000 rgba(60, 185, 201, 255));}") ,self.timer_totaltime.setText('Total 0 seconds')])
