@@ -14,7 +14,8 @@ from PyQt5.QtWidgets import *
 import darkdetect
 import datetime
 from pygame import mixer
-from time import sleep
+import requests
+import re
 
 from timepicker import Ui_TimePicker
 
@@ -1224,6 +1225,10 @@ class Ui_ClockWindow(object):
         self.stop_play = False
         self.flag_counter = 0
 
+        # related to world time
+        self.world_selectCity.currentTextChanged.connect(self.req)
+        self.world_city.setText('')
+        self.world_cityTime.setText('')
 
     #-------------------------Designer codes------------------------------------
     def retranslateUi(self, MainWindow):
@@ -2237,4 +2242,28 @@ class Ui_ClockWindow(object):
             
             self.flag_counter = 0
 
+    # ------------------------------------world time--------------------------
+    def req(self):
+        try:
+            self.world_cityTime.setText('Loading...')
+            url = "http://worldtimeapi.org/api/timezone/" + self.world_selectCity.currentText()
+            city_name = ((self.world_selectCity.currentText()).split('/'))[1]
+            self.world_city.setText(city_name)
             
+            req = requests.get(url)
+            time = (req.json())['datetime']
+
+            time = re.findall(r'.+T(.+)\..+' , time)
+
+            self.world_cityTime.setText(time[0])
+        except:
+            self.world_cityTime.setText('')
+            self.world_city.setText('')
+
+            msg_net = QtWidgets.QMessageBox()
+            msg_net.setIcon(QtWidgets.QMessageBox.Warning)
+            msg_net.setText("Check your internet                     ")
+            msg_net.setWindowTitle("Alarm")
+            msg_net.setStandardButtons(QtWidgets.QMessageBox.Ok )
+            msg_net.buttonClicked.connect(lambda: msg_net.close())
+            msg_net.exec_()
