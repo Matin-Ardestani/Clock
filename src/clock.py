@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import darkdetect
-from datetime import datetime
+import datetime
 from pygame import mixer
 from time import sleep
 
@@ -1155,13 +1155,6 @@ class Ui_ClockWindow(object):
 
         #------------------------------------My codes--------------------------
 
-        # delete some objects
-        self.stop_F1.deleteLater()
-        self.stop_F2.deleteLater()
-        self.stop_F3.deleteLater()
-        self.stop_F4.deleteLater()
-
-
         # related to themes
         self.defualt_counter = 0
 
@@ -1214,6 +1207,23 @@ class Ui_ClockWindow(object):
 
         self.pauesCounter = 0
 
+        # related to stop watch
+        self.stop_F1.hide()
+        self.stop_F2.hide()
+        self.stop_F3.hide()
+        self.stop_F4.hide()
+
+
+        self.stop_stopbtn.clicked.connect(self.startWatch)
+        self.stop_flagbtn.clicked.connect(self.flagWatch)
+
+        self.stop_flagbtn.setEnabled(False)
+        
+        self.stop_seconds = 0
+        self.stop_counter = 0
+        self.stop_play = False
+        self.flag_counter = 0
+
 
     #-------------------------Designer codes------------------------------------
     def retranslateUi(self, MainWindow):
@@ -1239,9 +1249,9 @@ class Ui_ClockWindow(object):
         self.timer_totaltime.setText(_translate("MainWindow", "Total 0 seconds"))
         self.stop_hour.setText(_translate("MainWindow", "00"))
         self.label_8.setText(_translate("MainWindow", ":"))
-        self.stop_min.setText(_translate("MainWindow", "02"))
+        self.stop_min.setText(_translate("MainWindow", "00"))
         self.label_10.setText(_translate("MainWindow", ":"))
-        self.stop_sec.setText(_translate("MainWindow", "12"))
+        self.stop_sec.setText(_translate("MainWindow", "00"))
         self.stop_F1.setText(_translate("MainWindow", "00:00:24"))
         self.stop_F2.setText(_translate("MainWindow", "00:01:02"))
         self.stop_F3.setText(_translate("MainWindow", "00:02:05"))
@@ -1360,6 +1370,11 @@ class Ui_ClockWindow(object):
             self.label_8.setStyleSheet('color: #F9F9F9;')
             self.label_10.setStyleSheet('color: #F9F9F9;')
 
+            self.stop_F1.setStyleSheet('color: #F9F9F9')
+            self.stop_F2.setStyleSheet('color: #F9F9F9')
+            self.stop_F3.setStyleSheet('color: #F9F9F9')
+            self.stop_F4.setStyleSheet('color: #F9F9F9')
+
 
             # worldtime page
             self.page_world.setStyleSheet('border:none; background-color: #0B0D12;')
@@ -1463,6 +1478,12 @@ class Ui_ClockWindow(object):
             self.stop_sec.setStyleSheet('color: #0B0D12;')
             self.label_8.setStyleSheet('color: #0B0D12;')
             self.label_10.setStyleSheet('color: #0B0D12;')
+
+            self.stop_F1.setStyleSheet('color: #0B0D12')
+            self.stop_F2.setStyleSheet('color: #0B0D12')
+            self.stop_F3.setStyleSheet('color: #0B0D12')
+            self.stop_F4.setStyleSheet('color: #0B0D12')
+
 
             # page worldtime
             self.page_world.setStyleSheet('background-color: #F9F9F9; border: none;')
@@ -1865,7 +1886,7 @@ class Ui_ClockWindow(object):
 
         def totalLeft(alarm_num , seconds):
             hour = seconds // 3600
-            minute = (seconds - (hour*3600)) // 60
+            minute = ((seconds - (hour*3600)) // 60) + 1
             if alarm_num == 1:
                 self.alarm_timeleft.setText('Alarm in %i hours and %i minutes' % (hour , minute))
             elif alarm_num == 2:
@@ -1945,11 +1966,11 @@ class Ui_ClockWindow(object):
             diff_counter4 -= 1
 
     def getSeconds(self , alarm_number , hour , minute , second):
-        current = datetime.now()
+        current = datetime.datetime.now()
         now = '%s:%s:%s' % (current.hour, current.minute , current.second)
         then = '%s:%s:%s' % (hour , minute , second)
         FTM = '%H:%M:%S'
-        difference = datetime.strptime(then , FTM) - datetime.strptime(now , FTM)
+        difference = datetime.datetime.strptime(then , FTM) - datetime.datetime.strptime(now , FTM)
         all_seconds = difference.total_seconds()
 
         if all_seconds < 0:
@@ -1989,7 +2010,7 @@ class Ui_ClockWindow(object):
 
     def PlayRington(self):
 
-        now = datetime.now()
+        now = datetime.datetime.now()
         H = now.hour
         M = now.minute
 
@@ -2007,7 +2028,7 @@ class Ui_ClockWindow(object):
 
 
 
-    # --------------------------timer-------------------------
+    # ------------------------------------timer-------------------------------
     def runTimer(self):
         self.timepicker = TimePicker()
 
@@ -2030,7 +2051,6 @@ class Ui_ClockWindow(object):
             elif len(numberplus) == 1:
                 numberplus = '00' + numberplus
 
-            print(self.color_timer , number , numberplus)
 
             quary = "QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.%s rgba(85, 87, 83, 0), stop:0.%s rgba(60, 185, 201, 255));}" % (numberplus , number)
 
@@ -2121,3 +2141,100 @@ class Ui_ClockWindow(object):
 
         self.timepicker.ui.select_btn.clicked.connect(run)
         self.timepicker.show()
+
+
+    # ------------------------------------stop watch--------------------------
+    def startWatch(self):
+        self.stop_counter += 1
+
+        def changeStoptime():
+            self.stop_seconds += 1
+            time = str(datetime.timedelta(seconds=self.stop_seconds))
+            time = time.split(':')
+            hour = time[0]
+            minute = time[1]
+            second = time[2]
+            self.stop_hour.setText(hour)
+            self.stop_min.setText(minute)
+            self.stop_sec.setText(second)
+
+
+        if self.stop_counter % 2 != 0:
+
+            if self.flag_counter == 0:
+                self.stop_F1.hide()
+                self.stop_F2.hide()
+                self.stop_F3.hide()
+                self.stop_F4.hide()
+                self.stop_flagbtn.setEnabled(True)
+            elif self.flag_counter >= 4:
+                self.stop_flagbtn.setEnabled(False)
+
+            self.stop_play = True
+
+            icon_stop = QtGui.QIcon()
+            icon_stop.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.stop_stopbtn.setIcon(icon_stop)
+
+            icon_fin = QtGui.QIcon()
+            icon_fin.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.stop_flagbtn.setIcon(icon_fin)
+
+            self.stop_watch = QTimer()
+            self.stop_watch.timeout.connect(changeStoptime)
+            self.stop_watch.start(1000)
+
+        else:
+            self.stop_watch.stop()
+            icon_stop = QtGui.QIcon()
+            icon_stop.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.stop_stopbtn.setIcon(icon_stop)
+
+            self.stop_flagbtn.setEnabled(True)
+            self.stop_play = False
+
+            icon_fin = QtGui.QIcon()
+            icon_fin.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.stop_flagbtn.setIcon(icon_fin)
+
+
+    def flagWatch(self):
+        if self.stop_play == True:
+            self.flag_counter += 1
+            hour = self.stop_hour.text()
+            minute = self.stop_min.text()
+            sec = self.stop_sec.text()
+
+            if self.flag_counter == 1:
+                self.stop_F1.setText('%s:%s:%s' % (hour , minute , sec))
+                self.stop_F1.show()
+            elif self.flag_counter == 2:
+                self.stop_F2.setText('%s:%s:%s' % (hour , minute , sec))
+                self.stop_F2.show()
+            elif self.flag_counter == 3:
+                self.stop_F3.setText('%s:%s:%s' % (hour , minute , sec))
+                self.stop_F3.show()
+            elif self.flag_counter == 4:
+                self.stop_F4.setText('%s:%s:%s' % (hour , minute , sec))
+                self.stop_F4.show()
+                self.stop_flagbtn.setEnabled(False)
+            elif self.flag_counter > 4:
+                self.stop_flagbtn.setEnabled(False)
+            
+        elif self.stop_play == False:
+            self.stop_watch.stop()
+            self.stop_seconds = 0
+
+            icon_stop = QtGui.QIcon()
+            icon_stop.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.stop_stopbtn.setIcon(icon_stop)
+
+            icon_flag = QtGui.QIcon()
+            icon_flag.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Clock/images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.stop_flagbtn.setIcon(icon_flag)
+
+            self.stop_flagbtn.setEnabled(False)
+            
+            self.flag_counter = 0
+
+            
