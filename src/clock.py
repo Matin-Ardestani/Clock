@@ -16,6 +16,9 @@ import datetime
 from pygame import mixer
 import requests
 import re
+from pathlib import Path
+
+path = Path.cwd()
 
 from timepicker import Ui_TimePicker
 
@@ -47,7 +50,7 @@ class Ui_ClockWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(570, 580))
         MainWindow.setMaximumSize(QtCore.QSize(570, 580))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../images/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("%s/images/logo.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: #F9F9F9;")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -75,7 +78,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.alarm_newbtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../images/plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("%s/images/plus.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.alarm_newbtn.setIcon(icon1)
         self.alarm_newbtn.setIconSize(QtCore.QSize(50, 50))
         self.alarm_newbtn.setObjectName("alarm_newbtn")
@@ -142,7 +145,7 @@ class Ui_ClockWindow(object):
         self.alarm_deletebtn1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.alarm_deletebtn1.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("%s/images/delete-bin-dark.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.alarm_deletebtn1.setIcon(icon2)
         self.alarm_deletebtn1.setIconSize(QtCore.QSize(20, 20))
         self.alarm_deletebtn1.setObjectName("alarm_deletebtn1")
@@ -406,7 +409,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.timer_stopbtn.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("%s/images/stop.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.timer_stopbtn.setIcon(icon3)
         self.timer_stopbtn.setIconSize(QtCore.QSize(50, 50))
         self.timer_stopbtn.setObjectName("timer_stopbtn")
@@ -418,7 +421,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.timer_runbtn.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("%s/images/play.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.timer_runbtn.setIcon(icon3)
         self.timer_runbtn.setIconSize(QtCore.QSize(50, 50))
         self.timer_runbtn.setObjectName("timer_runbtn")
@@ -431,7 +434,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.timer_pausebtn.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("%s/images/pause.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.timer_pausebtn.setIcon(icon4)
         self.timer_pausebtn.setIconSize(QtCore.QSize(50, 50))
         self.timer_pausebtn.setObjectName("timer_pausebtn")
@@ -517,7 +520,7 @@ class Ui_ClockWindow(object):
 "border-radius: 20px;")
         self.stop_flagbtn.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("%s/images/flag-time.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.stop_flagbtn.setIcon(icon5)
         self.stop_flagbtn.setIconSize(QtCore.QSize(50, 50))
         self.stop_flagbtn.setObjectName("stop_flagbtn")
@@ -1140,7 +1143,7 @@ class Ui_ClockWindow(object):
 "background-color: #DEDEDE;")
         self.btn_settings.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../images/settings-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("%s/images/settings-dark.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_settings.setIcon(icon6)
         self.btn_settings.setIconSize(QtCore.QSize(20, 20))
         self.btn_settings.setObjectName("btn_settings")
@@ -1282,10 +1285,10 @@ class Ui_ClockWindow(object):
         def dark_colors():
             # moving between pages
             icon_light = QtGui.QIcon()
-            icon_light.addPixmap(QtGui.QPixmap("../images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_light.addPixmap(QtGui.QPixmap("%s/images/settings-light.png" % path),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
             icon_dark = QtGui.QIcon()
-            icon_dark.addPixmap(QtGui.QPixmap("../images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_dark.addPixmap(QtGui.QPixmap("%s/images/settings-dark.png" % path),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
             self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
             self.btn_alarm.setStyleSheet('background-color: #0B0D12; border-right: 1px solid #0B0D12;    color: #F9F9F9;'),
@@ -1339,7 +1342,7 @@ class Ui_ClockWindow(object):
             self.label.setStyleSheet('color: #F9F9F9;')
             self.alarm_timeleft.setStyleSheet('color: #F9F9F9;')
             deleteicon_light = QtGui.QIcon()
-            deleteicon_light.addPixmap(QtGui.QPixmap("../images/delete-bin-light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            deleteicon_light.addPixmap(QtGui.QPixmap("%s/images/delete-bin-light.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.alarm_deletebtn1.setIcon(deleteicon_light)
 
 
@@ -1399,7 +1402,7 @@ class Ui_ClockWindow(object):
             # moving between pages
 
             icon_dark = QtGui.QIcon()
-            icon_dark.addPixmap(QtGui.QPixmap("../images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_dark.addPixmap(QtGui.QPixmap("%s/images/settings-dark.png" % path),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
             self.btn_alarm.clicked.connect(lambda: [self.pages.setCurrentWidget(self.page_alarm) , 
             self.btn_alarm.setStyleSheet('background-color: #F9F9F9; border-right: 1px solid #0B0D12'),
@@ -1449,7 +1452,7 @@ class Ui_ClockWindow(object):
             self.label.setStyleSheet('color: #0B0D12;')
             self.alarm_timeleft.setStyleSheet('color: #0B0D12;')
             deleteicon_dark = QtGui.QIcon()
-            deleteicon_dark.addPixmap(QtGui.QPixmap("../images/delete-bin-dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            deleteicon_dark.addPixmap(QtGui.QPixmap("%s/images/delete-bin-dark.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.alarm_deletebtn1.setIcon(deleteicon_dark)
 
             self.alarm_hour2.setStyleSheet('color: #0B0D12;')
@@ -1512,7 +1515,7 @@ class Ui_ClockWindow(object):
                 if self.defualt_counter > 1:
                     self.btn_settings.setStyleSheet('background-color: #0B0D12;')
                     icon_dark = QtGui.QIcon()
-                    icon_dark.addPixmap(QtGui.QPixmap("../images/settings-light.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    icon_dark.addPixmap(QtGui.QPixmap("%s/images/settings-light.png" % path),QtGui.QIcon.Normal, QtGui.QIcon.Off)
                     self.btn_settings.setIcon(icon_dark)
             elif self.defualt_theme == 'Light':
                 self.current_theme = 'Light'
@@ -1521,7 +1524,7 @@ class Ui_ClockWindow(object):
                 if self.defualt_counter > 1:
                     self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
                     icon_light = QtGui.QIcon()
-                    icon_light.addPixmap(QtGui.QPixmap("../images/settings-dark.png"),QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    icon_light.addPixmap(QtGui.QPixmap("%s/images/settings-dark.png" % path),QtGui.QIcon.Normal, QtGui.QIcon.Off)
                     self.btn_settings.setIcon(icon_light)
 
 
@@ -1530,7 +1533,7 @@ class Ui_ClockWindow(object):
             dark_colors()
             self.btn_settings.setStyleSheet('background-color: #0B0D12;')
             icon_light = QtGui.QIcon()
-            icon_light.addPixmap(QtGui.QPixmap("../images/settings-light.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_light.addPixmap(QtGui.QPixmap("%s/images/settings-light.png" % path),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.btn_settings.setIcon(icon_light)
 
         elif theme == 'Light':
@@ -1538,7 +1541,7 @@ class Ui_ClockWindow(object):
             light_colors()
             self.btn_settings.setStyleSheet('background-color: #F9F9F9;')
             icon_dark = QtGui.QIcon()
-            icon_dark.addPixmap(QtGui.QPixmap("../images/settings-dark.png"),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_dark.addPixmap(QtGui.QPixmap("%s/images/settings-dark.png" % path),    QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.btn_settings.setIcon(icon_dark)
 
 
@@ -2020,7 +2023,7 @@ class Ui_ClockWindow(object):
         M = now.minute
 
         mixer.init()
-        mixer.music.load('../ringtone/alarm-ringtone.ogg')
+        mixer.music.load('%s/ringtone/alarm-ringtone.ogg')
         mixer.music.play(loops=-1)
 
         msg = QtWidgets.QMessageBox()
@@ -2073,7 +2076,7 @@ class Ui_ClockWindow(object):
                 self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.999 rgba(85, 87, 83, 0), stop:0.999 rgba(60, 185, 201, 255));}")
 
                 mixer.init()
-                mixer.music.load('../ringtone/alarm-ringtone.ogg')
+                mixer.music.load('%s/ringtone/alarm-ringtone.ogg')
                 mixer.music.play(loops=-1)
 
                 msg = QtWidgets.QMessageBox()
@@ -2098,11 +2101,11 @@ class Ui_ClockWindow(object):
             if self.pauesCounter % 2 != 0:
                 self.timer.stop()
                 change_icon = QtGui.QIcon()
-                change_icon.addPixmap(QtGui.QPixmap("../images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                change_icon.addPixmap(QtGui.QPixmap("%s/images/play.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 self.timer_pausebtn.setIcon(change_icon)
             else:
                 change_icon = QtGui.QIcon()
-                change_icon.addPixmap(QtGui.QPixmap("../images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                change_icon.addPixmap(QtGui.QPixmap("%s/images/pause.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 self.timer_pausebtn.setIcon(change_icon)
                 self.timer.start(1000)
 
@@ -2178,11 +2181,11 @@ class Ui_ClockWindow(object):
             self.stop_play = True
 
             icon_stop = QtGui.QIcon()
-            icon_stop.addPixmap(QtGui.QPixmap("../images/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_stop.addPixmap(QtGui.QPixmap("%s/images/pause.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.stop_stopbtn.setIcon(icon_stop)
 
             icon_fin = QtGui.QIcon()
-            icon_fin.addPixmap(QtGui.QPixmap("../images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_fin.addPixmap(QtGui.QPixmap("%s/images/flag-time.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.stop_flagbtn.setIcon(icon_fin)
 
             self.stop_watch = QTimer()
@@ -2192,14 +2195,14 @@ class Ui_ClockWindow(object):
         else:
             self.stop_watch.stop()
             icon_stop = QtGui.QIcon()
-            icon_stop.addPixmap(QtGui.QPixmap("../images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_stop.addPixmap(QtGui.QPixmap("%s/images/play.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.stop_stopbtn.setIcon(icon_stop)
 
             self.stop_flagbtn.setEnabled(True)
             self.stop_play = False
 
             icon_fin = QtGui.QIcon()
-            icon_fin.addPixmap(QtGui.QPixmap("../images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_fin.addPixmap(QtGui.QPixmap("%s/images/stop.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.stop_flagbtn.setIcon(icon_fin)
 
 
@@ -2231,11 +2234,11 @@ class Ui_ClockWindow(object):
             self.stop_seconds = 0
 
             icon_stop = QtGui.QIcon()
-            icon_stop.addPixmap(QtGui.QPixmap("../images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_stop.addPixmap(QtGui.QPixmap("%s/images/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.stop_stopbtn.setIcon(icon_stop)
 
             icon_flag = QtGui.QIcon()
-            icon_flag.addPixmap(QtGui.QPixmap("../images/flag-time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_flag.addPixmap(QtGui.QPixmap("%s/images/flag-time.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.stop_flagbtn.setIcon(icon_flag)
 
             self.stop_flagbtn.setEnabled(False)
