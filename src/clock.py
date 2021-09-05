@@ -18,8 +18,8 @@ import requests
 import re
 from pathlib import Path
 
-path = Path.cwd()
-
+path = str(Path.cwd())
+print(path)
 from timepicker import Ui_TimePicker
 
 selected_hour = ''
@@ -2022,9 +2022,12 @@ class Ui_ClockWindow(object):
         H = now.hour
         M = now.minute
 
+
+
+
         mixer.init()
-        mixer.music.load('%s/ringtone/alarm-ringtone.ogg')
-        mixer.music.play(loops=-1)
+        mixer.music.load('%s/ringtone/alarm-ringtone.ogg' % path)
+        mixer.music.play()
 
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
@@ -2076,7 +2079,7 @@ class Ui_ClockWindow(object):
                 self.timer_Cleft.setStyleSheet("QFrame{	border-radius: 150px;	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.999 rgba(85, 87, 83, 0), stop:0.999 rgba(60, 185, 201, 255));}")
 
                 mixer.init()
-                mixer.music.load('%s/ringtone/alarm-ringtone.ogg')
+                mixer.music.load('%s/ringtone/alarm-ringtone.ogg' % path)
                 mixer.music.play(loops=-1)
 
                 msg = QtWidgets.QMessageBox()
