@@ -1268,7 +1268,7 @@ class Ui_ClockWindow(object):
         self.label_6.setText(_translate("MainWindow", "Light"))
         self.label_11.setText(_translate("MainWindow", "System default"))
         self.label_12.setText(_translate("MainWindow", "About"))
-        self.label_13.setText(_translate("MainWindow", "<html><head/><body><p>This is a multifunctional app that helps you do your daily activities better.</p><p>This app programmed by a 15-year-old teenager who is interested in programming.</p><p>So you can support him with this links:</p><p>GitHub: <a href=\"https://github.com/Matin-Ardestani\"><span style=\" text-decoration: underline; color:#0000ff;\">github.com/Matin-Ardestani</span></a></p><p>Social medeia: <a href=\"https://bioly.io/MatinArdestani\"><span style=\" text-decoration: underline; color:#0000ff;\">bioly.io/MatinArdestani</span></a></p></body></html>"))
+        self.label_13.setText(_translate("MainWindow", "<html><head/><body><p>This is a multifunctional app that helps you do your daily activities better.</p><p>This app programmed by a 15-year-old teenager who is interested in programming.</p><p>So you can support him with this links:</p><p>GitHub: <a href=\"https://github.com/Matin-Ardestani\"><span style=\" text-decoration: underline; color:#3CB9C9;\">github.com/Matin-Ardestani</span></a></p><p>Social medeia: <a href=\"https://bioly.io/MatinArdestani\"><span style=\" text-decoration: underline; color:#3CB9C9;\">bioly.io/MatinArdestani</span></a></p></body></html>"))
         self.btn_alarm.setText(_translate("MainWindow", "Alaram"))
         self.btn_timer.setText(_translate("MainWindow", "Timer"))
         self.btn_stopW.setText(_translate("MainWindow", "StopWatch"))
