@@ -2027,7 +2027,7 @@ class Ui_ClockWindow(object):
 
         mixer.init()
         mixer.music.load('%s/ringtone/alarm-ringtone.ogg' % path)
-        mixer.music.play()
+        mixer.music.play(loops=-1)
 
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
